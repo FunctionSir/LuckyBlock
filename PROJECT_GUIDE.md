@@ -4,7 +4,7 @@
 
 LuckyBlock 是一个基于以太坊智能合约的去中心化彩票系统。玩家支付固定 ETH 购买彩票，管理员触发开奖后，Chainlink VRF 生成链上真随机数选出中奖者，奖金自动转账。
 
-**技术栈：** Solidity + Chainlink VRF V2 + Vue 3 + Vite + ethers.js
+**技术栈：** Solidity + Chainlink VRF V2.5 + Vue 3 + Vite + ethers.js
 
 ---
 
@@ -31,6 +31,7 @@ LuckyBlock 是一个基于以太坊智能合约的去中心化彩票系统。玩
    - `_vrfCoordinator`: `0x0000000000000000000000000000000000000000`
    - `_keyHash`: `0x0000000000000000000000000000000000000000000000000000000000000000`
    - `_callbackGasLimit`: `0`
+   - `_nativePayment`: `false`
    - `_testMode`: `true`
 4. 点击 **transact** 部署
 5. 切换 Remix 账户面板到不同地址，调用 `buyTicket`（value: `1000000000000000` wei = 0.001 ETH），重复多次
@@ -51,9 +52,10 @@ LuckyBlock 是一个基于以太坊智能合约的去中心化彩票系统。玩
 1. Remix 环境选 **Injected Provider - MetaMask**
 2. 部署参数：
    - `_subscriptionId`: 你的订阅 ID
-   - `_vrfCoordinator`: `0x8103B0A8A00be2DDC778e6e7eaa21791Cd364625`
-   - `_keyHash`: `0x474e34a077df58807dbe9c96d3c009b23b3c6d0cce433e59bbf5b34f823bc56c`
+   - `_vrfCoordinator`: `0x9DdfaCa8183c41ad55329BdeeD9F6A8d53168B1B`
+   - `_keyHash`: `0x787d74caea10b2b357790d5b5247c2f63d1d91572a9846f780606e4d953677ae`
    - `_callbackGasLimit`: `100000`
+   - `_nativePayment`: `false`（用 LINK 支付）或 `true`（用 ETH 支付）
    - `_testMode`: `false`
 3. 在 vrf.chain.link 将部署的合约地址添加为 Consumer
 4. 多账户买票 → 管理员调用 `requestDraw` → 等待约 30 秒 → 查看 `WinnerSelected` 事件
