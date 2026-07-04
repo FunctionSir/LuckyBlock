@@ -113,12 +113,12 @@ contract LuckyBlock {
         require(tickets.length > 0, "No one palyed yet!");
         address winner = tickets[random % tickets.length];
         uint256 prize = roundSales - roundFee;
-        (bool ok, ) = payable(winner).call{value: prize}("");
-        require(ok, "Can not draw!");
         totalFee += roundFee;
         roundFee = 0;
         roundSales = 0;
         delete tickets;
         curRound++;
+        (bool ok, ) = payable(winner).call{value: prize}("");
+        require(ok, "Can not draw!");
     }
 }
