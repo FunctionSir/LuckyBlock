@@ -149,7 +149,7 @@ contract LuckyBlock is VRFConsumerBaseV2 {
     }
 
     // ============ 提取平台费 ============
-    function withdrawFee() external onlyManager needsNoFee {
+    function withdrawFee() external payable onlyManager needsNoFee {
         require(platformBalance > 0, "No platform fee");
         uint256 amount = platformBalance;
         platformBalance = 0;
@@ -159,7 +159,7 @@ contract LuckyBlock is VRFConsumerBaseV2 {
     }
 
     // ============ 开奖（Chainlink VRF 模式） ============
-    function requestDraw() external onlyManager needsNoFee {
+    function requestDraw() external payable onlyManager needsNoFee {
         require(!testMode, "Use drawWinner in test mode");
         require(tickets.length > 0, "No players");
 
@@ -186,7 +186,7 @@ contract LuckyBlock is VRFConsumerBaseV2 {
     }
 
     // ============ 开奖（VM 测试模式） ============
-    function drawWinner(uint256 _random) external onlyManager needsNoFee {
+    function drawWinner(uint256 _random) external payable onlyManager needsNoFee {
         require(testMode, "Only in test mode");
         require(tickets.length > 0, "No players");
         _executeDraw(_random % tickets.length);
