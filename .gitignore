@@ -1,3 +1,4 @@
+# Part Node, by GitHub
 # Logs
 logs
 *.log
@@ -141,3 +142,20 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Part Solidity-Remix, from github.com/github/gitignore
+# Remix compiler artifacts
+**/artifacts/
+**/artifacts/**
+
+# Remix plugin state folders
+deps/
+states/
+
+# Debug info
+*.dbg.json
+*.tsbuildinfo
+
+# Optional
+.env
+.env.local
