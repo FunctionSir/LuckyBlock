@@ -186,7 +186,7 @@ contract LuckyBlock is VRFConsumerBaseV2Plus {
 
     function fulfillRandomWords(
         uint256 _requestId,
-        uint256[] memory _randomWords
+        uint256[] calldata _randomWords
     ) internal override {
         require(pendingDraws[_requestId], "Request not found");
         pendingDraws[_requestId] = false;
